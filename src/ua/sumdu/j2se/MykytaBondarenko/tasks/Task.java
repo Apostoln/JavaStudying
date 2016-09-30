@@ -69,5 +69,21 @@ public class Task {
         return repeated;
     }
 
+    int nextTimeAfter(int current) {
+        if (active) {
+            if (!repeated && time > current) {
+                return time;
+            }
+            if(repeated && endTime > current) {
+                if(startTime > current) {
+                    return startTime;
+                }
+                //Find amount of executed repeating, add 1 and convert to time
+                return  startTime + ((current - startTime)/repeatInterval + 1)*repeatInterval;
+            }
+        }
+        return  -1;
+    }
+
 }
 
