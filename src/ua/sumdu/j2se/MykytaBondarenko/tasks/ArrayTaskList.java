@@ -1,19 +1,40 @@
 package ua.sumdu.j2se.MykytaBondarenko.tasks;
 
 public class ArrayTaskList {
-    private Task[] tasks;
+    private final int BASIC_SIZE = 5;
+    private Task[] tasks = new Task[BASIC_SIZE];
+    int index = 0;
 
-    public void add(Task task) {}; // – метод, що додає до списку вказану задачу.
-    public  boolean remove(Task task) {}; // – метод, що видаляє задачу із списку і повертає істину, якщо
-    //така задача була у списку. Якщо у списку було декілька таких задач, необхідно видалити одну
-    //будь-яку.
-    public int size() {}; // – метод, що повертає кількість задач у списку.
-    public Task getTask(int index) {}; // – метод, що повертає задачу, яка знаходиться на вказаному місці у
-    //списку, перша задача має індекс 0.
-    /*
-        Задачі у списку повинні зберігатися за допомогою масиву, список може містити будь-яку кількість
-задач, що може знаходитись у масиві, але не повинен виділяти набагато більше місця, ніж потрібно у
-даний момент. Наприклад, якщо у списку п’ять задач, то масив для їх зберігання не повинен бути
-розміром у 100 задач
-     */
+    public void add(Task task) {
+        if (index == tasks.length) {
+            Task[] temp = tasks;
+            tasks = new Task[temp.length * 2];
+            for (int i = 0; i < temp.length; i++) {
+                tasks[i] = temp[i];
+            }
+        }
+        tasks[index] = task;
+        index++;
+    }
+
+    public boolean remove(Task task) {
+        for (int i = 0; i < tasks.length; i++) {
+            if (tasks[i] == task) {
+                for (int j = i; j < tasks.length - 1; j++) {
+                    tasks[j] = tasks[j + 1];
+                }
+                index--;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int size() {
+        return index + 1;
+    }
+
+    public Task getTask(int index) {
+        return tasks[index];
+    }
 }
