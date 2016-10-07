@@ -37,4 +37,21 @@ public class ArrayTaskList {
     public Task getTask(int index) {
         return tasks[index];
     }
+
+    public ArrayTaskList incoming(int from, int to) {
+        ArrayTaskList result = new ArrayTaskList();
+        for(int i = 0; i < tasks.length; i++) {
+            if(tasks[i].isRepeated()) {
+                if(tasks[i].nextTimeAfter(from) < to) {
+                    result.add(tasks[i]);
+                }
+            }
+            else {
+                if(tasks[i].getTime() > from && tasks[i].getTime() < to) {
+                    result.add(tasks[i]);
+                }
+            }
+        }
+        return result;
+    }
 }
