@@ -3,7 +3,7 @@ package ua.sumdu.j2se.MykytaBondarenko.tasks;
 public class ArrayTaskList {
     private final int BASIC_SIZE = 5;
     private Task[] tasks = new Task[BASIC_SIZE];
-    int index = 0;
+    private int index = 0;
 
     public void add(Task task) {
         if (index == tasks.length) {
@@ -31,7 +31,7 @@ public class ArrayTaskList {
     }
 
     public int size() {
-        return index + 1;
+        return index;
     }
 
     public Task getTask(int index) {
@@ -40,14 +40,14 @@ public class ArrayTaskList {
 
     public ArrayTaskList incoming(int from, int to) {
         ArrayTaskList result = new ArrayTaskList();
-        for(int i = 0; i < tasks.length; i++) {
+        for(int i = 0; i < index; i++) {
             if(tasks[i].isRepeated()) {
-                if(tasks[i].nextTimeAfter(from) < to) {
+                if(tasks[i].nextTimeAfter(from) <= to) {
                     result.add(tasks[i]);
                 }
             }
             else {
-                if(tasks[i].getTime() > from && tasks[i].getTime() < to) {
+                if(tasks[i].getTime() >= from && tasks[i].getTime() <= to) {
                     result.add(tasks[i]);
                 }
             }
