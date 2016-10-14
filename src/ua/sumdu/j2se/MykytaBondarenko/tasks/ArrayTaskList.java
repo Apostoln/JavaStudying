@@ -1,6 +1,6 @@
 package ua.sumdu.j2se.MykytaBondarenko.tasks;
 
-public class ArrayTaskList {
+public class ArrayTaskList extends TaskList {
     private final int BASIC_SIZE = 5;
     private Task[] tasks = new Task[BASIC_SIZE];
     private int index = 0;
@@ -23,7 +23,7 @@ public class ArrayTaskList {
 
     public boolean remove(Task task) {
         for (int i = 0; i < tasks.length; i++) {
-            if (tasks[i] == task) {
+            if (task.equals(tasks[i])) {
                 for (int j = i; j < tasks.length - 1; j++) {
                     tasks[j] = tasks[j + 1];
                 }
@@ -66,4 +66,5 @@ public class ArrayTaskList {
         }
         return result;
     }
+
 }

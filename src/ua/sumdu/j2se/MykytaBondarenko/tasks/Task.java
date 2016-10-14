@@ -113,5 +113,18 @@ public class Task {
         return  -1;
     }
 
+    public boolean equals(Task task) {
+        if (task == null) {
+            return false;
+        }
+        return title == task.title &&
+                active == task.active &&
+                time == task.time &&
+                startTime == task.startTime &&
+                endTime == task.endTime &&
+                repeatInterval == task.repeatInterval &&
+                repeated == task.repeated;
+    }
+
 }
 
