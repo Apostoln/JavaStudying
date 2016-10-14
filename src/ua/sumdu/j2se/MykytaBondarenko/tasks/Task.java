@@ -9,14 +9,25 @@ public class Task {
     private int repeatInterval;
     private boolean repeated;
 
-    public Task(String title, int time) {
+    public Task(String title, int time) throws IllegalArgumentException {
+        if (time < 0) {
+            throw new IllegalArgumentException("Time must be not negative");
+        }
+
         this.title = title;
         this.time = time;
         active = false;
         repeated = false;
     }
 
-    public Task(String title, int start, int end, int interval) {
+    public Task(String title, int start, int end, int interval) throws IllegalArgumentException {
+        if (start < 0 || end < 0 || end <= start) {
+            throw new IllegalArgumentException("Start and end parameters must be not negative and end > start");
+        }
+        if (interval <= 0) {
+            throw new IllegalArgumentException("Interval must be a positive");
+        }
+
         this.title = title;
         startTime = start;
         endTime = end;
@@ -45,7 +56,11 @@ public class Task {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(int time) throws IllegalArgumentException {
+        if (time < 0) {
+            throw new IllegalArgumentException("Time must be not negative");
+        }
+
         this.time = time;
     }
 
@@ -61,7 +76,14 @@ public class Task {
         return repeatInterval;
     }
 
-    public void setTime(int start, int end, int interval) {
+    public void setTime(int start, int end, int interval) throws IllegalArgumentException {
+        if (start < 0 || end < 0) {
+            throw new IllegalArgumentException("Start and end parameters must be not negative");
+        }
+        if (interval <= 0) {
+            throw new IllegalArgumentException("Interval must be a positive");
+        }
+
         startTime = start;
         endTime = end;
         repeatInterval = interval;
@@ -71,7 +93,11 @@ public class Task {
         return repeated;
     }
 
-    public int nextTimeAfter(int current) {
+    public int nextTimeAfter(int current) throws IllegalArgumentException {
+        if (current < 0) {
+            throw new IllegalArgumentException("Current time must be not negative");
+        }
+
         if (active) {
             if (!repeated && time > current) {
                 return time;

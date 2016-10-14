@@ -5,7 +5,11 @@ public class ArrayTaskList {
     private Task[] tasks = new Task[BASIC_SIZE];
     private int index = 0;
 
-    public void add(Task task) {
+    public void add(Task task) throws NullPointerException {
+        if (task == null) {
+            throw new NullPointerException("Task is null");
+        }
+
         if (index == tasks.length) {
             Task[] temp = tasks;
             tasks = new Task[temp.length * 2];
@@ -34,11 +38,19 @@ public class ArrayTaskList {
         return index;
     }
 
-    public Task getTask(int index) {
+    public Task getTask(int index) throws IllegalArgumentException {
+        if(index < 0 || index > this.index) {
+            throw new IllegalArgumentException("Incorrect index");
+        }
+
         return tasks[index];
     }
 
-    public ArrayTaskList incoming(int from, int to) {
+    public ArrayTaskList incoming(int from, int to) throws IllegalArgumentException {
+        if(from >= to || from < 0 || to < 0) {
+            throw new IllegalArgumentException("Time must be not negative and from < to");
+        }
+
         ArrayTaskList result = new ArrayTaskList();
         for(int i = 0; i < index; i++) {
             if(tasks[i].isRepeated()) {
