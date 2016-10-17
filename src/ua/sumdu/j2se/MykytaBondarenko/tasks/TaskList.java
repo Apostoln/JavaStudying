@@ -1,6 +1,11 @@
 package ua.sumdu.j2se.MykytaBondarenko.tasks;
 
-public abstract class TaskList {
+import java.util.Iterator;
+
+public abstract class TaskList implements Iterable <Task> {
+
+    public abstract Iterator <Task> iterator();
+
     public abstract void add(Task task) throws NullPointerException;
 
     public abstract boolean remove(Task task);

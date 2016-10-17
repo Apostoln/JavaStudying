@@ -1,5 +1,8 @@
 package ua.sumdu.j2se.MykytaBondarenko.tasks;
 
+import java.util.Iterator;
+import java.util.function.Consumer;
+
 public class ArrayTaskList extends TaskList {
     private final int BASIC_SIZE = 5;
     private Task[] tasks = new Task[BASIC_SIZE];
@@ -65,6 +68,24 @@ public class ArrayTaskList extends TaskList {
             }
         }
         return result;
+    }
+
+    public ArrayTaskListIterator iterator() {
+        return new ArrayTaskListIterator();
+    }
+
+    public class ArrayTaskListIterator implements Iterator<Task> {
+        private int nextIndex = 0;
+        public boolean hasNext() {
+            return nextIndex < index;
+        }
+
+        @Override
+        public Task next() {
+            Task result = tasks[nextIndex];
+            nextIndex++;
+            return result;
+        }
     }
 
 }

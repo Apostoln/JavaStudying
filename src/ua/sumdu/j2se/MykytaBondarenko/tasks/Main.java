@@ -1,5 +1,7 @@
 package ua.sumdu.j2se.MykytaBondarenko.tasks;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -16,6 +18,7 @@ public class Main {
         //list.add(null); //NullPointerException here
 
         //ArrayTaskList result = list.incoming(6, 43);
+        //System.out.println(list.size());
         TaskList result = list.incoming(6,43);
 
         for(int i = 0; i < result.size(); i++) {
