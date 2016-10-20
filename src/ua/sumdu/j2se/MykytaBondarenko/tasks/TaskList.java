@@ -43,4 +43,29 @@ public abstract class TaskList implements Iterable <Task> {
         }
         return result;
     }
+
+    public boolean equals(TaskList other) {
+        if(other.size() != this.size()) {
+            return false;
+        }
+        Iterator<Task> first = other.iterator();
+        Iterator<Task> second = this.iterator();
+        while(first.hasNext()) {
+            Task firstTask = first.next();
+            Task secondTask = second.next();
+            if (firstTask != secondTask) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int hashCode() {
+        int size = this.size();
+        int hashsum = 0;
+        for(Task task: this) {
+            hashsum += task.hashCode();
+        }
+        return size + hashsum;
+    }
 }

@@ -126,5 +126,9 @@ public class Task {
                 repeated == task.repeated;
     }
 
+    public int hashCode() {
+        return title.hashCode() + (isActive()? 1:0) + (isRepeated()? startTime + endTime + repeatInterval : 0);
+    }
+
 }
 
