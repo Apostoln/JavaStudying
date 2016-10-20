@@ -49,33 +49,14 @@ public class ArrayTaskList extends TaskList {
         return tasks[index];
     }
 
-    public ArrayTaskList incoming(int from, int to) throws IllegalArgumentException {
-        if(from >= to || from < 0 || to < 0) {
-            throw new IllegalArgumentException("Time must be not negative and from < to");
-        }
-
-        ArrayTaskList result = new ArrayTaskList();
-        for(int i = 0; i < index; i++) {
-            if(tasks[i].isRepeated()) {
-                if(tasks[i].nextTimeAfter(from) <= to) {
-                    result.add(tasks[i]);
-                }
-            }
-            else {
-                if(tasks[i].getTime() >= from && tasks[i].getTime() <= to) {
-                    result.add(tasks[i]);
-                }
-            }
-        }
-        return result;
-    }
-
     public ArrayTaskListIterator iterator() {
         return new ArrayTaskListIterator();
     }
 
     public class ArrayTaskListIterator implements Iterator<Task> {
         private int nextIndex = 0;
+
+        @Override
         public boolean hasNext() {
             return nextIndex < index;
         }
@@ -87,5 +68,4 @@ public class ArrayTaskList extends TaskList {
             return result;
         }
     }
-
 }

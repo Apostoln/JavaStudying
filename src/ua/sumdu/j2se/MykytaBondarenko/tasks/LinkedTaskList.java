@@ -79,27 +79,6 @@ public class LinkedTaskList extends TaskList {
         return node.getTask();
     }
 
-    public LinkedTaskList incoming(int from, int to) throws IllegalArgumentException {
-        if(from >= to || from < 0 || to < 0) {
-            throw new IllegalArgumentException("Time must be not negative and from < to");
-        }
-        LinkedTaskList result = new LinkedTaskList();
-
-        for(Node node = head; node.getNext() != null; node = node.getNext()) {
-            if(node.getTask().isRepeated()) {
-                if(node.getTask().nextTimeAfter(from) <= to) {
-                    result.add(node.getTask());
-                }
-            }
-            else {
-                if(node.getTask().getTime() >= from && node.getTask().getTime() <= to) {
-                    result.add(node.getTask());
-                }
-            }
-        }
-        return result;
-    }
-
     public LinkedTaskListIterator iterator() {
         return new LinkedTaskListIterator();
     }
@@ -107,16 +86,20 @@ public class LinkedTaskList extends TaskList {
     public class LinkedTaskListIterator implements Iterator<Task> {
         Node nextNode = head;
 
+        @Override
         public boolean hasNext() {
             return nextNode.getNext() != null;
         }
 
+        @Override
         public Task next() {
             Task result = nextNode.getTask();
             nextNode = nextNode.getNext();
             return result;
         }
     }
+
 }
+
 
 
