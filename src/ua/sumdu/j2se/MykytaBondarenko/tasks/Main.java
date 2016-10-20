@@ -1,7 +1,5 @@
 package ua.sumdu.j2se.MykytaBondarenko.tasks;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-
 public class Main {
 
     public static void main(String[] args) {

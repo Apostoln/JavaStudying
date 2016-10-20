@@ -1,6 +1,8 @@
 package ua.sumdu.j2se.MykytaBondarenko.tasks;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable{
     private String title;
     private boolean active;
     private int time;
@@ -130,5 +132,9 @@ public class Task {
         return title.hashCode() + (isActive()? 1:0) + (isRepeated()? startTime + endTime + repeatInterval : 0);
     }
 
+    @Override
+    public String toString() {
+        return title + (isActive()? " Active " : " Not active ");
+    }
 }
 

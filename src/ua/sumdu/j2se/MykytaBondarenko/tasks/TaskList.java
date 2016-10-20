@@ -1,8 +1,9 @@
 package ua.sumdu.j2se.MykytaBondarenko.tasks;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
-public abstract class TaskList implements Iterable <Task> {
+public abstract class TaskList implements Iterable <Task>, Serializable {
 
     public TaskList() {}
     public abstract Iterator <Task> iterator();
@@ -67,5 +68,10 @@ public abstract class TaskList implements Iterable <Task> {
             hashsum += task.hashCode();
         }
         return size + hashsum;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + " with " + size() + " elements ";
     }
 }

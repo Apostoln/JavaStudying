@@ -1,7 +1,6 @@
 package ua.sumdu.j2se.MykytaBondarenko.tasks;
 
 import java.util.Iterator;
-import java.util.function.Consumer;
 
 public class ArrayTaskList extends TaskList {
     private final int BASIC_SIZE = 5;

@@ -1,6 +1,5 @@
 package ua.sumdu.j2se.MykytaBondarenko.tasks;
 
-import java.util.IllegalFormatCodePointException;
 import java.util.Iterator;
 
 public class LinkedTaskList extends TaskList {
