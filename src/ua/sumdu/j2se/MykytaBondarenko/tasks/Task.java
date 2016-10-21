@@ -136,5 +136,10 @@ public class Task implements Serializable{
     public String toString() {
         return title + (isActive()? " Active " : " Not active ");
     }
+
+    @Override
+    public Task clone() {
+        return isRepeated()? new Task(title, startTime, endTime, repeatInterval) : new Task(title, time);
+    }
 }
 

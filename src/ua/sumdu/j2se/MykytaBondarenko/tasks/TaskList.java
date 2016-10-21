@@ -3,7 +3,7 @@ package ua.sumdu.j2se.MykytaBondarenko.tasks;
 import java.io.Serializable;
 import java.util.Iterator;
 
-public abstract class TaskList implements Iterable <Task>, Serializable {
+public abstract class TaskList implements Iterable <Task>, Serializable, Cloneable {
 
     public TaskList() {}
     public abstract Iterator <Task> iterator();
@@ -73,5 +73,23 @@ public abstract class TaskList implements Iterable <Task>, Serializable {
     @Override
     public String toString() {
         return getClass().getName() + " with " + size() + " elements ";
+    }
+
+    @Override
+    public TaskList clone(){
+        TaskList result = null;
+        try {
+            result = this.getClass().newInstance();
+        }
+        catch (InstantiationException e) {
+            System.out.println(e.getMessage());
+        }
+        catch (IllegalAccessException e) {
+            System.out.println(e.getMessage());
+        }
+        for (Task task: this) {
+            result.add(task);
+        }
+        return result;
     }
 }
